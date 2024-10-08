@@ -1,17 +1,24 @@
 header {
     display: flex;
     align-items: center;
+    padding-inline: 10px;
+    border-bottom: 1px solid var(--text-primary);
 
     h1 {
         display: flex;
         flex: 10;
         justify-content: center;
+        margin: 0;
     }
 
     .slot {
         flex: 1;
         display: flex;
         justify-content: center;
+
+        mat-icon {
+            color: var(--text-primary);
+          }
         
         &.themeToggle {
             align-items: center;

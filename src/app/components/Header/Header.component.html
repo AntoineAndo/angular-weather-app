@@ -1,11 +1,19 @@
 <header>
   <div class="slot themeToggle">
-    <button>
-      <mat-icon class="mat-icon-rtl-mirror" svgIcon="light-mode"></mat-icon>
-    </button>
+    <app-theme-toggle></app-theme-toggle>
   </div>
 
-  <h1>Paris, France</h1>
+  <h1>
+    {{
+      weatherData
+        ? weatherData.location.name + ", " + weatherData.location.country
+        : "---"
+    }}
+  </h1>
 
-  <div class="slot searchButton"></div>
+  <div class="slot searchButton">
+    <button>
+      <mat-icon class="mat-icon-rtl-mirror">search</mat-icon>
+    </button>
+  </div>
 </header>

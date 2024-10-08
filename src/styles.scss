@@ -1,5 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+  --background: white;
+  --background-2: rgb(240, 240, 240);
+  --text-primary: rgb(16, 16, 16);
+  --transparent-text: rgba(16, 16, 16, 0.7);
+  --text-secondary: royalblue;
+  --accent: purple;
+}
+
+:root[data-theme='dark'] {
+  --background: black;
+  --background-2: rgb(32, 32, 32);
+  --text-primary: rgb(241, 241, 241);
+  --transparent-text: rgba(241, 241, 241, 0.7);
+  --text-secondary: grey;
+  --accent: darkred;
+}
+
+
 html, body {
   margin: 0;
   padding: 0;
@@ -8,12 +27,26 @@ html, body {
   height: 100vh;
   width: 100vw;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  border: none;
+  background: none;
+}
+
+body {
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: var(--background);
+  color: var(--text-primary) !important;
+}
 
 button, input {
   border: none;
   background: none;
   border-radius: 0;
   outline: none;
+  cursor: pointer;
 }
+
+
