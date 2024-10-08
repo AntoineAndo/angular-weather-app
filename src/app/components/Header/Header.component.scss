@@ -1,0 +1,26 @@
+header {
+    display: flex;
+    align-items: center;
+
+    h1 {
+        display: flex;
+        flex: 10;
+        justify-content: center;
+    }
+
+    .slot {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        
+        &.themeToggle {
+            align-items: center;
+            height: 40px;
+            width: 40px;
+        }
+
+        &.searchButton {
+            // align-items: flex-end;
+        }
+    }
+}
