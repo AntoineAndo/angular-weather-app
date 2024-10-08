@@ -1,4 +1,13 @@
 .app {
     // border: solid 1px black;
     height: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    .weather {
+        display: flex;
+        flex: 1;
+        padding: 20px;
+    }
 }

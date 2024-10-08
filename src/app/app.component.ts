@@ -15,11 +15,15 @@ import { WeatherService } from './services/weather.service';
 export class AppComponent {
   weatherData: any;
 
+  today: string = new Date().toLocaleDateString('fr-FR');
+
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {
     this.weatherService.weather$.subscribe((data) => {
       this.weatherData = data;
+
+      console.log(this.weatherData);
     });
   }
 }

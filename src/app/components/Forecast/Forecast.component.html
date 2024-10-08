@@ -1,0 +1,23 @@
+<div class="forecast">
+  <ul>
+    <li
+      *ngFor="
+        let day of weatherData.forecast.forecastday.slice(1);
+        let i = index
+      "
+    >
+      <div class="row">
+        <div class="icon">
+          <img [src]="day.day.condition.icon" alt="Weather icon" />
+        </div>
+        <div class="day">{{ day.date | formatDate }}</div>
+        <div class="temp">
+          <span>{{ day.day.maxtemp_c }}°C</span>
+          <span> / </span>
+          <span>{{ day.day.mintemp_c }}°C</span>
+        </div>
+      </div>
+      <hr *ngIf="i !== weatherData.forecast.forecastday.length" />
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,22 @@
+.forecast {
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        li {
+            display: flex;
+            flex-direction: column;
+
+            .row {
+                display: flex;
+                align-items: center;
+            }
+
+            hr {
+                width: 100%;
+            }
+        }
+    }
+}

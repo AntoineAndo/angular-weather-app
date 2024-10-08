@@ -31,8 +31,10 @@ html, body {
 * {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
   border: none;
   background: none;
+  list-style-type: none;
 }
 
 body {
@@ -49,4 +51,7 @@ button, input {
   cursor: pointer;
 }
 
-
+hr {
+  border-bottom: 1px solid var(--text-primary);
+  width: 100%;
+}
