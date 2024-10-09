@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/Header/Header.component';
 import { WeatherComponent } from './components/Weather/Weather.component';
@@ -12,7 +12,7 @@ import { WeatherService } from './services/weather.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   weatherData: any;
 
   today: string = new Date().toLocaleDateString('fr-FR');

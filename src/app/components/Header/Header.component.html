@@ -1,19 +1,24 @@
 <header>
-  <div class="slot themeToggle">
-    <app-theme-toggle></app-theme-toggle>
+  <div class="headerRow">
+    <div class="themeToggle">
+      <app-theme-toggle></app-theme-toggle>
+    </div>
+
+    <h1>
+      {{
+        weatherData && weatherData.location
+          ? weatherData.location.name + ", " + weatherData.location.country
+          : "---"
+      }}
+    </h1>
+
+    <div class="searchButton">
+      <button (click)="toggleSearchModal()">
+        <mat-icon class="mat-icon-rtl-mirror">search</mat-icon>
+      </button>
+    </div>
   </div>
-
-  <h1>
-    {{
-      weatherData
-        ? weatherData.location.name + ", " + weatherData.location.country
-        : "---"
-    }}
-  </h1>
-
-  <div class="slot searchButton">
-    <button>
-      <mat-icon class="mat-icon-rtl-mirror">search</mat-icon>
-    </button>
+  <div class="modalSlot">
+    <app-search-modal *ngIf="isSearchModalOpen"></app-search-modal>
   </div>
 </header>

@@ -31,6 +31,7 @@ export class WeatherService {
     // Get the location from local storage or get the user location
     const localLocation = this.getLocationFromLocalStorage();
     if (localLocation?.name) {
+      console.log(localLocation.name);
       this.locationSubject.next(localLocation);
     } else {
       this.getUserLocation();
@@ -41,8 +42,10 @@ export class WeatherService {
         filter((location) => location !== null),
         switchMap((location) => this.fetchWeather(location))
       )
-      .subscribe((weatherData) => {
-        this.weatherSubject.next(weatherData);
+      .subscribe((data) => {
+        this.saveLocationToLocalStorage(data.location);
+        console.log(data);
+        this.weatherSubject.next(data);
       });
   }
 
@@ -61,6 +64,7 @@ export class WeatherService {
   }
 
   fetchWeather(location: any): Observable<any> {
+    console.log('fetchWeather for location:', location);
     if (!this.API_KEY || !this.API_ENDPOINT) {
       return of({});
     }
@@ -82,10 +86,6 @@ export class WeatherService {
 
     // Call the API
     return this.http.get<any>(url.toString()).pipe(
-      tap((data) => {
-        // Save location to local storage
-        this.saveLocationToLocalStorage(data.location);
-      }),
       catchError((error) => {
         console.error('Error fetching weather data:', error);
         return of(null);
@@ -115,5 +115,10 @@ export class WeatherService {
     }
 
     return null;
+  }
+
+  setLocation(location: any): void {
+    console.log(location);
+    this.locationSubject.next(location);
   }
 }

@@ -1,0 +1,21 @@
+<div class="searchModal">
+  <div class="inputContainer">
+    <input
+      type="text"
+      [value]="searchValue"
+      (keypress)="onInputChange($event)"
+    />
+    <button (click)="clearSearch()" class="clearSearch">
+      <mat-icon class="mat-icon-rtl-mirror">close</mat-icon>
+    </button>
+  </div>
+
+  <ul class="searchResults">
+    <ng-container *ngFor="let result of searchResults; let i = index">
+      <li (click)="selectPlace(result)">
+        <p class="name">{{ result.name }}</p>
+      </li>
+      <hr *ngIf="i !== searchResults.length - 1" />
+    </ng-container>
+  </ul>
+</div>
