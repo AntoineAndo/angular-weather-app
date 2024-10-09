@@ -5,7 +5,11 @@
     flex: 1;
     flex-direction: column;
 
-    .weather {
+    app-header {
+        width: 100%;
+    }
+
+    app-weather {
         display: flex;
         flex: 1;
         padding: 20px;
