@@ -45,6 +45,7 @@ export class WeatherService {
       .subscribe((data) => {
         this.weatherSubject.next(data);
         this.saveLocationToLocalStorage(data.location);
+        this.saveLocationToRecentLocations(data.location);
       });
   }
 
@@ -104,6 +105,26 @@ export class WeatherService {
         },
       })
     );
+  }
+
+  saveLocationToRecentLocations(location: any): void {
+    // Add the location to the list of recent locations
+    const recentLocations = localStorage.getItem('recentLocations');
+
+    if (recentLocations) {
+      const recentArray = JSON.parse(recentLocations);
+
+      // Remove the location if it already exists in the list
+      const filteredLocations = recentArray.filter((l: any) => {
+        return location.name !== l.name;
+      });
+
+      const newLocations = [location, ...filteredLocations].slice(0, 5);
+
+      localStorage.setItem('recentLocations', JSON.stringify(newLocations));
+    } else {
+      localStorage.setItem('recentLocations', JSON.stringify([location]));
+    }
   }
 
   getLocationFromLocalStorage(): any {

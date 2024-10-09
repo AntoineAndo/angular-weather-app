@@ -11,11 +11,29 @@
   </div>
 
   <ul class="searchResults">
-    <ng-container *ngFor="let result of searchResults; let i = index">
-      <li (click)="selectPlace(result)">
-        <p class="name">{{ result.name }}</p>
+    <!-- Search results -->
+    <ng-container *ngIf="searchValue !== ''">
+      <ng-container *ngFor="let result of searchResults; let i = index">
+        <li (click)="selectPlace(result)">
+          <p class="name">{{ result.name }}</p>
+        </li>
+        <hr *ngIf="i !== searchResults.length - 1" /> </ng-container
+    ></ng-container>
+
+    <!-- Default suggestions -->
+
+    <ng-container *ngIf="searchValue === ''">
+      <li>
+        <mat-icon class="mat-icon-rtl-mirror">location_searching</mat-icon>
+        <p>Position actuelle</p>
       </li>
-      <hr *ngIf="i !== searchResults.length - 1" />
-    </ng-container>
+      <!-- Only display the separator if there are recent locations below -->
+      <hr *ngIf="recentLocations.length !== 0" />
+      <ng-container *ngFor="let location of recentLocations; let i = index">
+        <li (click)="selectPlace(location)">
+          <p class="name">{{ location.name }}</p>
+        </li>
+        <hr *ngIf="i < recentLocations.length - 1" /> </ng-container
+    ></ng-container>
   </ul>
 </div>

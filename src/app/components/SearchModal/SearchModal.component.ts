@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { PlacesService } from '../../services/places.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,8 +16,14 @@ import { WeatherService } from '../../services/weather.service';
 export class SearchModalComponent implements OnInit {
   @Input() weatherData: any;
 
+  @Output() onClose: EventEmitter<any> = new EventEmitter();
+
   searchValue: string = '';
   searchResults: any[] = [];
+
+  recentLocations: any[] = localStorage.getItem('recentLocations')
+    ? JSON.parse(localStorage.getItem('recentLocations')!)
+    : [];
 
   timer: any;
 
@@ -56,5 +62,7 @@ export class SearchModalComponent implements OnInit {
         longitude: location.longitude,
       },
     });
+
+    this.onClose.emit();
   }
 }

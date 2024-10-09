@@ -19,6 +19,9 @@
     </div>
   </div>
   <div class="modalSlot">
-    <app-search-modal *ngIf="isSearchModalOpen"></app-search-modal>
+    <app-search-modal
+      *ngIf="isSearchModalOpen"
+      (onClose)="toggleSearchModal()"
+    ></app-search-modal>
   </div>
 </header>
