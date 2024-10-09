@@ -43,9 +43,8 @@ export class WeatherService {
         switchMap((location) => this.fetchWeather(location))
       )
       .subscribe((data) => {
-        this.saveLocationToLocalStorage(data.location);
-        console.log(data);
         this.weatherSubject.next(data);
+        this.saveLocationToLocalStorage(data.location);
       });
   }
 

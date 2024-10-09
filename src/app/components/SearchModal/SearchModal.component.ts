@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { ThemeToggleComponent } from '../ThemeToggle/ThemeToggle.component';
 import { PlacesService } from '../../services/places.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -10,7 +9,7 @@ import { WeatherService } from '../../services/weather.service';
   selector: 'app-search-modal',
   standalone: true,
   imports: [MatIconModule, HttpClientModule, CommonModule],
-  providers: [PlacesService, WeatherService],
+  providers: [PlacesService],
   templateUrl: './SearchModal.component.html',
   styleUrl: './SearchModal.component.scss',
 })

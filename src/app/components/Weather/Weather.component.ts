@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ThemeToggleComponent } from '../ThemeToggle/ThemeToggle.component';
-import { WeatherService } from '../../services/weather.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ForecastComponent } from '../Forecast/Forecast.component';
 
