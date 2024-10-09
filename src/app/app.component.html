@@ -1,5 +1,7 @@
 <div class="app">
   <app-header [weatherData]="weatherData"></app-header>
-  <p>Aujourd'hui {{ today }}</p>
-  <app-weather [weatherData]="weatherData" class="weather"></app-weather>
+  <main>
+    <p class="date">Aujourd'hui {{ today }}</p>
+    <app-weather [weatherData]="weatherData" class="weather"></app-weather>
+  </main>
 </div>

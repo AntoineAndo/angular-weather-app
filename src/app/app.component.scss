@@ -9,9 +9,18 @@
         width: 100%;
     }
 
-    app-weather {
-        display: flex;
-        flex: 1;
+    main {
         padding: 20px;
+        
+        .date {
+            font-size: 1.3em;
+            font-weight: 500;
+        }
+
+        app-weather {
+            display: flex;
+            flex: 1;
+        }
     }
+
 }
