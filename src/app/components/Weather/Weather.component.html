@@ -29,8 +29,8 @@
 
     <div class="weatherDetails">
       <div class="weatherDetail">
-        <h3>Wind</h3>
-        <p>
+        <p class="label">Wind</p>
+        <p class="value">
           {{
             weatherData && weatherData.current
               ? weatherData.current.wind_kph + " km/h"
@@ -38,9 +38,9 @@
           }}
         </p>
       </div>
-      <div class="slot weatherDetail">
-        <h3>Humidity</h3>
-        <p>
+      <div class="weatherDetail">
+        <p class="label">Humidity</p>
+        <p class="value">
           {{
             weatherData && weatherData.current
               ? weatherData.current.humidity + "%"
@@ -48,9 +48,9 @@
           }}
         </p>
       </div>
-      <div class="slot weatherDetail">
-        <h3>Pressure</h3>
-        <p>
+      <div class="weatherDetail">
+        <p class="label">Pressure</p>
+        <p class="value">
           {{
             weatherData && weatherData.current
               ? weatherData.current.pressure_mb + " hPa"
