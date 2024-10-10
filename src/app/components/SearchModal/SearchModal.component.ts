@@ -61,7 +61,10 @@ export class SearchModalComponent implements OnInit {
     this.timer = setTimeout(() => {
       // Call the API to search for matching places
       this.placesService.searchPlaces(value).subscribe((data) => {
-        this.searchResults = data;
+        this.searchResults = data.filter(
+          (d: any) =>
+            d.name.toLowerCase() !== this.inputForm.value.toLowerCase()
+        );
         this.searchLoading = false;
       });
     }, 400);
