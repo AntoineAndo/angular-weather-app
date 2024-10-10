@@ -1,64 +1,72 @@
 <div class="weather">
   <div [class]="(isLoading ? 'loading' : '') + ' today'">
-    <div class="weatherIcon">
-      <img
-        [src]="
-          weatherData && weatherData.current
-            ? weatherData.current.condition.icon
-            : ''
-        "
-        alt="Weather icon"
-      />
-    </div>
-    <div class="weatherInfo">
-      <h2 class="temperature">
-        {{
-          weatherData && weatherData.current
-            ? weatherData.current.temp_c + "°C"
-            : "---"
-        }}
-      </h2>
-      <p>
-        {{
-          weatherData && weatherData.current
-            ? weatherData.current.condition.text
-            : "---"
-        }}
-      </p>
-    </div>
+    <!-- Error -->
+    <ng-container *ngIf="!isLoading && error !== ''">
+      <p class="error">{{ error }}</p>
+    </ng-container>
 
-    <div class="weatherDetails">
-      <div class="weatherDetail">
-        <p class="label">Vent</p>
-        <p class="value">
+    <!-- OK -->
+    <ng-container *ngIf="!isLoading && error === ''">
+      <div class="weatherIcon">
+        <img
+          [src]="
+            weatherData && weatherData.current
+              ? weatherData.current.condition.icon
+              : ''
+          "
+          alt="Weather icon"
+        />
+      </div>
+      <div class="weatherInfo">
+        <h2 class="temperature">
           {{
             weatherData && weatherData.current
-              ? weatherData.current.wind_kph + " km/h"
+              ? weatherData.current.temp_c + "°C"
+              : "---"
+          }}
+        </h2>
+        <p>
+          {{
+            weatherData && weatherData.current
+              ? weatherData.current.condition.text
               : "---"
           }}
         </p>
       </div>
-      <div class="weatherDetail">
-        <p class="label">Humidité</p>
-        <p class="value">
-          {{
-            weatherData && weatherData.current
-              ? weatherData.current.humidity + "%"
-              : "---"
-          }}
-        </p>
+
+      <div class="weatherDetails">
+        <div class="weatherDetail">
+          <p class="label">Vent</p>
+          <p class="value">
+            {{
+              weatherData && weatherData.current
+                ? weatherData.current.wind_kph + " km/h"
+                : "---"
+            }}
+          </p>
+        </div>
+        <div class="weatherDetail">
+          <p class="label">Humidité</p>
+          <p class="value">
+            {{
+              weatherData && weatherData.current
+                ? weatherData.current.humidity + "%"
+                : "---"
+            }}
+          </p>
+        </div>
+        <div class="weatherDetail">
+          <p class="label">Pression</p>
+          <p class="value">
+            {{
+              weatherData && weatherData.current
+                ? weatherData.current.pressure_mb + " hPa"
+                : "---"
+            }}
+          </p>
+        </div>
       </div>
-      <div class="weatherDetail">
-        <p class="label">Pression</p>
-        <p class="value">
-          {{
-            weatherData && weatherData.current
-              ? weatherData.current.pressure_mb + " hPa"
-              : "---"
-          }}
-        </p>
-      </div>
-    </div>
+    </ng-container>
   </div>
 
   <app-forecast

@@ -65,4 +65,17 @@ export class SearchModalComponent implements OnInit {
 
     this.onClose.emit();
   }
+
+  selectCurrentLocation() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.weatherService.setLocation({
+        coordinates: {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        },
+      });
+
+      this.onClose.emit();
+    });
+  }
 }

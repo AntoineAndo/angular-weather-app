@@ -1,5 +1,5 @@
 <div class="forecast">
-  <ul>
+  <ul *ngIf="isLoading || (!isLoading && weatherData)">
     <li *ngFor="let n of [0, 1, 2, 3, 4]">
       <ng-container *ngIf="isLoading">
         <div class="row loading"></div>

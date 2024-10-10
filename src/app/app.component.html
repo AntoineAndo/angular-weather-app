@@ -4,6 +4,7 @@
     <p class="date">Aujourd'hui {{ today }}</p>
     <app-weather
       [weatherData]="weatherData"
+      [error]="error"
       [isLoading]="isLoading"
       class="weather"
     ></app-weather>

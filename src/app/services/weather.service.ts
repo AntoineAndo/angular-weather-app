@@ -9,6 +9,7 @@ import {
   of,
   switchMap,
   tap,
+  throwError,
 } from 'rxjs';
 
 import { environment } from '../../../environment';
@@ -31,7 +32,6 @@ export class WeatherService {
     // Get the location from local storage or get the user location
     const localLocation = this.getLocationFromLocalStorage();
     if (localLocation?.name) {
-      console.log(localLocation.name);
       this.locationSubject.next(localLocation);
     } else {
       this.getUserLocation();
@@ -40,12 +40,22 @@ export class WeatherService {
     this.location$
       .pipe(
         filter((location) => location !== null),
-        switchMap((location) => this.fetchWeather(location))
+        switchMap((location) => this.fetchWeather(location)),
+        catchError((error) => {
+          return throwError(() => error);
+        })
       )
-      .subscribe((data) => {
-        this.weatherSubject.next(data);
-        this.saveLocationToLocalStorage(data.location);
-        this.saveLocationToRecentLocations(data.location);
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.weatherSubject.next(data);
+          this.saveLocationToLocalStorage(data.location);
+          this.saveLocationToRecentLocations(data.location);
+        },
+        error: (error) => {
+          console.log('here');
+          this.weatherSubject.error(error);
+        },
       });
   }
 
@@ -53,20 +63,30 @@ export class WeatherService {
 
   getUserLocation(): void {
     // Get the user's current position
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.locationSubject.next({
-        coordinates: {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        },
-      });
-    });
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.locationSubject.next({
+          coordinates: {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          },
+        });
+      },
+      (error) => {
+        this.locationSubject.next({
+          error,
+        });
+      }
+    );
   }
 
   fetchWeather(location: any): Observable<any> {
-    console.log('fetchWeather for location:', location);
     if (!this.API_KEY || !this.API_ENDPOINT) {
-      return of({});
+      return throwError(() => new Error('API key or endpoint not defined'));
+    }
+
+    if (location.error) {
+      return throwError(() => 'Location not defined');
     }
 
     // Definition of the parameters for the API call
@@ -138,7 +158,6 @@ export class WeatherService {
   }
 
   setLocation(location: any): void {
-    console.log(location);
     this.locationSubject.next(location);
   }
 }

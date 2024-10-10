@@ -24,7 +24,7 @@
       <!-- Default suggestions -->
 
       <ng-container *ngIf="searchValue === ''">
-        <li>
+        <li (click)="selectCurrentLocation()">
           <mat-icon class="mat-icon-rtl-mirror">location_searching</mat-icon>
           <p>Position actuelle</p>
         </li>

@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { HeaderComponent } from './components/Header/Header.component';
 import { WeatherComponent } from './components/Weather/Weather.component';
 import { WeatherService } from './services/weather.service';
-import { filter, Subscription } from 'rxjs';
+import { catchError, filter, Subscription, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   today: string = new Date().toLocaleDateString('fr-FR');
 
   isLoading: boolean = true;
+  error: string = '';
 
   constructor(
     private weatherService: WeatherService,
@@ -37,8 +38,8 @@ export class AppComponent implements OnInit, OnDestroy {
           this.weatherData = data;
         },
         error: (error) => {
+          this.error = error;
           this.isLoading = false;
-          console.error('error', error);
         },
       });
   }
