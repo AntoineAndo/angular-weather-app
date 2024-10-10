@@ -1,6 +1,6 @@
 .backdrop {
     position: absolute;
-    height: 100vh;
+    height: calc(100vh - 70px);
     width: 100%;
     background: var(--transparent-background);
     backdrop-filter: blur(10px);
