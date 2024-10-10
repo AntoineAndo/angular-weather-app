@@ -106,3 +106,14 @@
         }
     }
 }
+
+@media (min-width: 1024px) {
+    .weather {
+        flex-direction: row;
+        align-items: flex-start;
+
+        .today {
+            height: 100%;
+        }
+    }
+}

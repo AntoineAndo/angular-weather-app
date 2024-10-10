@@ -12,41 +12,24 @@
               alt="Weather icon"
             />
           </div>
-          <div class="date">
-            {{ weatherData.forecast.forecastday[n + 1].date | formatDate }}
-          </div>
-          <div class="temp">
-            <span>{{
-              weatherData.forecast.forecastday[n + 1].day.mintemp_c
-            }}</span>
-            <span> / </span>
-            <span
-              >{{
-                weatherData.forecast.forecastday[n + 1].day.maxtemp_c
-              }}°C</span
-            >
+          <div class="info">
+            <div class="date">
+              {{ weatherData.forecast.forecastday[n + 1].date | formatDate }}
+            </div>
+            <div class="temp">
+              <span>{{
+                weatherData.forecast.forecastday[n + 1].day.mintemp_c
+              }}</span>
+              <span> / </span>
+              <span
+                >{{
+                  weatherData.forecast.forecastday[n + 1].day.maxtemp_c
+                }}°C</span
+              >
+            </div>
           </div>
         </div>
       </ng-container>
     </li>
-
-    <!-- <li
-      *ngFor="
-        let day of weatherData.forecast.forecastday.slice(1);
-        let i = index
-      "
-    >
-      <div class="row">
-        <div class="icon">
-          <img [src]="day.day.condition.icon" alt="Weather icon" />
-        </div>
-        <div class="date">{{ day.date | formatDate }}</div>
-        <div class="temp">
-          <span>{{ day.day.mintemp_c }}</span>
-          <span> / </span>
-          <span>{{ day.day.maxtemp_c }}°C</span>
-        </div>
-      </div>
-    </li> -->
   </ul>
 </div>

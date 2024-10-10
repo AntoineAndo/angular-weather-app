@@ -26,6 +26,11 @@
                     flex: 1;
                 }
 
+                .info {
+                    display: flex;
+                    flex: 3;
+                }
+
                 .date {
                     font-weight: 500;
                     flex: 2;
@@ -49,6 +54,27 @@
                     }
                 }
                 
+            }
+        }
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .forecast {
+        padding-bottom: 0;
+
+        ul {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            li {
+                width: 100%;
+            }
+
+            .info {
+                flex-direction: column;
+                gap: 5px;
             }
         }
     }
