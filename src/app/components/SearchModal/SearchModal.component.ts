@@ -90,4 +90,9 @@ export class SearchModalComponent implements OnInit {
       this.onClose.emit();
     });
   }
+
+  backdropClick(e: any) {
+    e.stopPropagation();
+    this.onClose.emit();
+  }
 }

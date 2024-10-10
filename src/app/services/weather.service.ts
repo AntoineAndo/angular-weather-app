@@ -108,7 +108,7 @@ export class WeatherService {
     return this.http.get<any>(url.toString()).pipe(
       catchError((error) => {
         console.error('Error fetching weather data:', error);
-        return of(null);
+        return throwError(() => 'Location not found');
       }),
       finalize(() => {})
     );
