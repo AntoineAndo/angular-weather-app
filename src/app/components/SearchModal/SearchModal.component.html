@@ -1,7 +1,7 @@
 <div class="backdrop" (click)="backdropClick($event)">
-  <div class="searchModal">
+  <div class="searchModal" (click)="dismissClick($event)">
     <form class="inputContainer">
-      <input type="text" [formControl]="inputForm" />
+      <input class="search-input" type="text" [formControl]="inputForm" />
       <button (click)="clearSearch()" class="clearSearch">
         <mat-icon class="mat-icon-rtl-mirror">close</mat-icon>
       </button>

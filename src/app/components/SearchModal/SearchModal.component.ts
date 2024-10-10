@@ -37,7 +37,8 @@ export class SearchModalComponent implements OnInit {
 
   ngOnInit() {
     // Automatically focus on the input field when the modal is opened
-    document.getElementById('search-input')?.focus();
+    //@ts-ignore
+    document.querySelector('.search-input').focus();
 
     this.inputForm.valueChanges.subscribe((value) => {
       // If the search value is empty, the search results should be cleared
@@ -94,5 +95,10 @@ export class SearchModalComponent implements OnInit {
   backdropClick(e: any) {
     e.stopPropagation();
     this.onClose.emit();
+  }
+
+  dismissClick(e: any) {
+    e.stopPropagation();
+    e.preventDefault();
   }
 }
