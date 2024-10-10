@@ -1,29 +1,47 @@
 <div class="backdrop">
   <div class="searchModal">
-    <div class="inputContainer">
-      <input
-        type="text"
-        [value]="searchValue"
-        (keypress)="onInputChange($event)"
-      />
+    <form class="inputContainer">
+      <input type="text" [formControl]="inputForm" />
       <button (click)="clearSearch()" class="clearSearch">
         <mat-icon class="mat-icon-rtl-mirror">close</mat-icon>
       </button>
-    </div>
+    </form>
 
     <ul class="searchResults">
       <!-- Search results -->
-      <ng-container *ngIf="searchValue !== ''">
+      <ng-container *ngIf="inputForm.value && inputForm.value != ''">
+        <!-- Litteral search -->
+        <li
+          (click)="
+            selectPlace({
+              name: inputForm.value
+            })
+          "
+        >
+          <p>
+            {{ inputForm.value }}
+          </p>
+        </li>
+        <hr *ngIf="searchResults.length !== 0" />
+
+        <!-- Search results -->
         <ng-container *ngFor="let result of searchResults; let i = index">
           <li (click)="selectPlace(result)">
             <p class="name">{{ result.name }}</p>
           </li>
-          <hr *ngIf="i !== searchResults.length - 1" /> </ng-container
-      ></ng-container>
+          <hr *ngIf="i !== searchResults.length - 1" />
+        </ng-container>
+
+        <!-- Spinner -->
+        <ng-container *ngIf="searchLoading">
+          <li>
+            <mat-icon class="spinner">cached</mat-icon>
+          </li>
+        </ng-container>
+      </ng-container>
 
       <!-- Default suggestions -->
-
-      <ng-container *ngIf="searchValue === ''">
+      <ng-container *ngIf="!inputForm.value || inputForm.value === ''">
         <li (click)="selectCurrentLocation()">
           <mat-icon class="mat-icon-rtl-mirror">location_searching</mat-icon>
           <p>Position actuelle</p>
