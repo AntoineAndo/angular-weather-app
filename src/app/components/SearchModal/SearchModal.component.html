@@ -42,6 +42,7 @@
 
       <!-- Default suggestions -->
       <ng-container *ngIf="!inputForm.value || inputForm.value === ''">
+        <!-- Current location button -->
         <li (click)="selectCurrentLocation()">
           <mat-icon class="mat-icon-rtl-mirror">location_searching</mat-icon>
           <p>Position actuelle</p>

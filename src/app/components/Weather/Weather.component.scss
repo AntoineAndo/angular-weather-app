@@ -23,6 +23,7 @@
         height: 50vh;
         background: var(--background-2);
         border-radius: 20px;
+        border-top-left-radius: 0;
         padding: 20px;
 
         &.loading {
