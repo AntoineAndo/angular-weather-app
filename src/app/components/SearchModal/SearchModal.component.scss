@@ -4,6 +4,9 @@
     width: 100%;
     background: var(--transparent-background);
     backdrop-filter: blur(10px);
+
+    display: flex;
+    justify-content: flex-end;
 }
 
 .searchModal {
@@ -70,4 +73,12 @@
         }
     }
 
+}
+
+@media screen and (min-width: 1024px) {
+    .searchModal {
+        width: 300px;
+        border-bottom-right-radius: 0;
+    }
+    
 }

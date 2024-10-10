@@ -22,15 +22,18 @@ header {
             flex: 1;
             display: flex;
             justify-content: center;
+            position: relative;
 
             
             &.themeToggle {
                 align-items: center;
             }
 
-            &.searchButton {
-                // align-items: flex-end;
-            }
+        }
+
+        .test {
+            border: solid 2px red;
+            width: 100%;
         }
     }
 
@@ -55,4 +58,17 @@ header {
             font-size: 36px;
         }
     }
+}
+
+@media screen and (min-width: 1024px) {
+
+    .searchInput {
+        display: flex;
+        gap: 10px;
+        position: absolute;
+        top: -15px;
+        right: 20px;
+        z-index: 100;
+    }
+    
 }
