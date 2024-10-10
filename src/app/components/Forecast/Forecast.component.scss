@@ -1,5 +1,7 @@
 .forecast {
 
+    padding-bottom: 100px;
+
     ul {
         display: flex;
         flex-direction: column;
@@ -9,11 +11,15 @@
         li {
             display: flex;
             flex-direction: column;
+            background: var(--background-2);
+            padding: 20px;
+            border-radius: 20px;
 
             .row {
                 display: flex;
                 align-items: center;
                 gap: 10px;
+                min-height: 40px;
 
                 .icon {
                     display: flex;
@@ -32,6 +38,17 @@
 
             hr {
                 width: 100%;
+            }
+
+            &:has(.loading) {
+                animation: loading 0.5s infinite alternate;
+
+                @for $i from 1 through 5 {
+                    &:nth-child(#{$i}) {
+                        animation-delay: $i * 0.1s;
+                    }
+                }
+                
             }
         }
     }

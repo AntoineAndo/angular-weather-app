@@ -1,5 +1,5 @@
 <div class="weather">
-  <div class="today">
+  <div [class]="(isLoading ? 'loading' : '') + ' today'">
     <div class="weatherIcon">
       <img
         [src]="
@@ -11,7 +11,7 @@
       />
     </div>
     <div class="weatherInfo">
-      <h2>
+      <h2 class="temperature">
         {{
           weatherData && weatherData.current
             ? weatherData.current.temp_c + "°C"
@@ -29,7 +29,7 @@
 
     <div class="weatherDetails">
       <div class="weatherDetail">
-        <p class="label">Wind</p>
+        <p class="label">Vent</p>
         <p class="value">
           {{
             weatherData && weatherData.current
@@ -39,7 +39,7 @@
         </p>
       </div>
       <div class="weatherDetail">
-        <p class="label">Humidity</p>
+        <p class="label">Humidité</p>
         <p class="value">
           {{
             weatherData && weatherData.current
@@ -49,7 +49,7 @@
         </p>
       </div>
       <div class="weatherDetail">
-        <p class="label">Pressure</p>
+        <p class="label">Pression</p>
         <p class="value">
           {{
             weatherData && weatherData.current
@@ -61,5 +61,9 @@
     </div>
   </div>
 
-  <app-forecast [weatherData]="weatherData" class="forecast"></app-forecast>
+  <app-forecast
+    [weatherData]="weatherData"
+    [isLoading]="isLoading"
+    class="forecast"
+  ></app-forecast>
 </div>

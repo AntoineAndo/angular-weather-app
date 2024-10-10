@@ -1,6 +1,36 @@
 <div class="forecast">
   <ul>
-    <li
+    <li *ngFor="let n of [0, 1, 2, 3, 4]">
+      <ng-container *ngIf="isLoading">
+        <div class="row loading"></div>
+      </ng-container>
+      <ng-container *ngIf="!isLoading">
+        <div class="row">
+          <div class="icon">
+            <img
+              [src]="weatherData.forecast.forecastday[n + 1].day.condition.icon"
+              alt="Weather icon"
+            />
+          </div>
+          <div class="date">
+            {{ weatherData.forecast.forecastday[n + 1].date | formatDate }}
+          </div>
+          <div class="temp">
+            <span>{{
+              weatherData.forecast.forecastday[n + 1].day.mintemp_c
+            }}</span>
+            <span> / </span>
+            <span
+              >{{
+                weatherData.forecast.forecastday[n + 1].day.maxtemp_c
+              }}°C</span
+            >
+          </div>
+        </div>
+      </ng-container>
+    </li>
+
+    <!-- <li
       *ngFor="
         let day of weatherData.forecast.forecastday.slice(1);
         let i = index
@@ -12,12 +42,11 @@
         </div>
         <div class="date">{{ day.date | formatDate }}</div>
         <div class="temp">
-          <span>{{ day.day.maxtemp_c }}°C</span>
+          <span>{{ day.day.mintemp_c }}</span>
           <span> / </span>
-          <span>{{ day.day.mintemp_c }}°C</span>
+          <span>{{ day.day.maxtemp_c }}°C</span>
         </div>
       </div>
-      <hr *ngIf="i !== weatherData.forecast.forecastday.length" />
-    </li>
+    </li> -->
   </ul>
 </div>

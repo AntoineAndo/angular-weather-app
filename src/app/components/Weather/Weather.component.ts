@@ -18,6 +18,7 @@ import { ForecastComponent } from '../Forecast/Forecast.component';
 })
 export class WeatherComponent {
   @Input() weatherData: any;
+  @Input() isLoading: boolean = true;
 
   constructor() {}
 

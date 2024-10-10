@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { HeaderComponent } from './components/Header/Header.component';
 import { WeatherComponent } from './components/Weather/Weather.component';
 import { WeatherService } from './services/weather.service';
-import { Subscription } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -19,28 +19,31 @@ export class AppComponent implements OnInit, OnDestroy {
 
   today: string = new Date().toLocaleDateString('fr-FR');
 
+  isLoading: boolean = true;
+
   constructor(
     private weatherService: WeatherService,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
-    this.weatherSubscription = this.weatherService.weather$.subscribe({
-      next: (data) => {
-        console.log('data', data);
-        this.weatherData = data;
-      },
-      error: (error) => {
-        console.error('error', error);
-      },
-      complete: () => {
-        console.log('complete');
-      },
-    });
+    this.weatherSubscription = this.weatherService.weather$
+      .pipe(filter((data) => data !== null))
+      .subscribe({
+        next: (data) => {
+          console.log('done');
+          console.log(data);
+          this.isLoading = false;
+          this.weatherData = data;
+        },
+        error: (error) => {
+          this.isLoading = false;
+          console.error('error', error);
+        },
+      });
   }
 
   ngOnDestroy(): void {
-    console.log('destroy');
     if (this.weatherSubscription) {
       this.weatherSubscription.unsubscribe();
     }

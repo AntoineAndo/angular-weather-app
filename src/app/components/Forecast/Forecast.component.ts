@@ -20,6 +20,7 @@ import { FormatDatePipe } from '../../pipes/format-dates.pipe';
 })
 export class ForecastComponent {
   @Input() weatherData: any;
+  @Input() isLoading: boolean = true;
 
   constructor() {}
 

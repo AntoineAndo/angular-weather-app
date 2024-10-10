@@ -2,6 +2,10 @@
   <app-header [weatherData]="weatherData"></app-header>
   <main>
     <p class="date">Aujourd'hui {{ today }}</p>
-    <app-weather [weatherData]="weatherData" class="weather"></app-weather>
+    <app-weather
+      [weatherData]="weatherData"
+      [isLoading]="isLoading"
+      class="weather"
+    ></app-weather>
   </main>
 </div>

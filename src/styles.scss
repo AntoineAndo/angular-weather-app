@@ -2,7 +2,7 @@
 
 :root {
   --background: white;
-  --background-2: rgb(240, 240, 240);
+  --background-2: rgb(230, 230, 230);
   --text-primary: rgb(16, 16, 16);
   --transparent-text: rgba(16, 16, 16, 0.7);
   --text-secondary: royalblue;
@@ -54,4 +54,16 @@ button, input {
 hr {
   border-bottom: 1px solid var(--text-primary);
   width: 100%;
+}
+
+
+
+@keyframes loading {
+  0% {
+      transform: translateX(0px)
+  }
+
+  100% {
+      transform: translateX(10px)
+  }
 }
