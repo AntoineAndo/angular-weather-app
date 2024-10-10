@@ -119,7 +119,7 @@ export class WeatherService {
         return location.name !== l.name;
       });
 
-      const newLocations = [location, ...filteredLocations].slice(0, 5);
+      const newLocations = [location, ...filteredLocations].slice(0, 3);
 
       localStorage.setItem('recentLocations', JSON.stringify(newLocations));
     } else {
