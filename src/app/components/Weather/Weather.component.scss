@@ -30,6 +30,11 @@
             animation: loading 0.5s infinite alternate;
         }
 
+        .mainInfo {
+            display: flex;
+            flex-direction: column;
+        }
+
         .weatherIcon {
             display: flex;
             justify-content: center;
@@ -59,6 +64,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
                 flex: 1;
 
                 .label {
@@ -81,5 +87,22 @@
         color: var(--text-error);
         font-weight: 500;
         text-align: center;
+    }
+}
+
+
+
+@media (min-width: 768px) {
+    .today {
+        flex-direction: row !important;
+
+        .mainInfo {
+            flex: 2;
+        }
+
+        .weatherDetails {
+            flex-direction: column;
+            height: 100%;
+        }
     }
 }

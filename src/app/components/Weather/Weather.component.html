@@ -7,31 +7,33 @@
 
     <!-- OK -->
     <ng-container *ngIf="!isLoading && error === ''">
-      <div class="weatherIcon">
-        <img
-          [src]="
-            weatherData && weatherData.current
-              ? weatherData.current.condition.icon
-              : ''
-          "
-          alt="Weather icon"
-        />
-      </div>
-      <div class="weatherInfo">
-        <h2 class="temperature">
-          {{
-            weatherData && weatherData.current
-              ? weatherData.current.temp_c + "°C"
-              : "---"
-          }}
-        </h2>
-        <p>
-          {{
-            weatherData && weatherData.current
-              ? weatherData.current.condition.text
-              : "---"
-          }}
-        </p>
+      <div class="mainInfo">
+        <div class="weatherIcon">
+          <img
+            [src]="
+              weatherData && weatherData.current
+                ? weatherData.current.condition.icon
+                : ''
+            "
+            alt="Weather icon"
+          />
+        </div>
+        <div class="weatherInfo">
+          <h2 class="temperature">
+            {{
+              weatherData && weatherData.current
+                ? weatherData.current.temp_c + "°C"
+                : "---"
+            }}
+          </h2>
+          <p>
+            {{
+              weatherData && weatherData.current
+                ? weatherData.current.condition.text
+                : "---"
+            }}
+          </p>
+        </div>
       </div>
 
       <div class="weatherDetails">

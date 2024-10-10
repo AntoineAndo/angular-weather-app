@@ -6,9 +6,7 @@
 
     <h1>
       {{
-        weatherData && weatherData.location
-          ? weatherData.location.name + ", " + weatherData.location.country
-          : "---"
+        weatherData && weatherData.location ? weatherData.location.name : "---"
       }}
     </h1>
 
