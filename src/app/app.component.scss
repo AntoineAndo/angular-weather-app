@@ -9,8 +9,8 @@
         width: 100%;
         position: sticky;
         top: 0;
-        background: var(--transparent-background);
-        backdrop-filter: blur(10px);
+        background: var(--background);
+        // backdrop-filter: blur(10px);
     }
 
     main {

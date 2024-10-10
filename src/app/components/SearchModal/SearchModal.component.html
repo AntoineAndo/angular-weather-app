@@ -1,39 +1,41 @@
-<div class="searchModal">
-  <div class="inputContainer">
-    <input
-      type="text"
-      [value]="searchValue"
-      (keypress)="onInputChange($event)"
-    />
-    <button (click)="clearSearch()" class="clearSearch">
-      <mat-icon class="mat-icon-rtl-mirror">close</mat-icon>
-    </button>
+<div class="backdrop">
+  <div class="searchModal">
+    <div class="inputContainer">
+      <input
+        type="text"
+        [value]="searchValue"
+        (keypress)="onInputChange($event)"
+      />
+      <button (click)="clearSearch()" class="clearSearch">
+        <mat-icon class="mat-icon-rtl-mirror">close</mat-icon>
+      </button>
+    </div>
+
+    <ul class="searchResults">
+      <!-- Search results -->
+      <ng-container *ngIf="searchValue !== ''">
+        <ng-container *ngFor="let result of searchResults; let i = index">
+          <li (click)="selectPlace(result)">
+            <p class="name">{{ result.name }}</p>
+          </li>
+          <hr *ngIf="i !== searchResults.length - 1" /> </ng-container
+      ></ng-container>
+
+      <!-- Default suggestions -->
+
+      <ng-container *ngIf="searchValue === ''">
+        <li>
+          <mat-icon class="mat-icon-rtl-mirror">location_searching</mat-icon>
+          <p>Position actuelle</p>
+        </li>
+        <!-- Only display the separator if there are recent locations below -->
+        <hr *ngIf="recentLocations.length !== 0" />
+        <ng-container *ngFor="let location of recentLocations; let i = index">
+          <li (click)="selectPlace(location)">
+            <p class="name">{{ location.name }}</p>
+          </li>
+          <hr *ngIf="i < recentLocations.length - 1" /> </ng-container
+      ></ng-container>
+    </ul>
   </div>
-
-  <ul class="searchResults">
-    <!-- Search results -->
-    <ng-container *ngIf="searchValue !== ''">
-      <ng-container *ngFor="let result of searchResults; let i = index">
-        <li (click)="selectPlace(result)">
-          <p class="name">{{ result.name }}</p>
-        </li>
-        <hr *ngIf="i !== searchResults.length - 1" /> </ng-container
-    ></ng-container>
-
-    <!-- Default suggestions -->
-
-    <ng-container *ngIf="searchValue === ''">
-      <li>
-        <mat-icon class="mat-icon-rtl-mirror">location_searching</mat-icon>
-        <p>Position actuelle</p>
-      </li>
-      <!-- Only display the separator if there are recent locations below -->
-      <hr *ngIf="recentLocations.length !== 0" />
-      <ng-container *ngFor="let location of recentLocations; let i = index">
-        <li (click)="selectPlace(location)">
-          <p class="name">{{ location.name }}</p>
-        </li>
-        <hr *ngIf="i < recentLocations.length - 1" /> </ng-container
-    ></ng-container>
-  </ul>
 </div>

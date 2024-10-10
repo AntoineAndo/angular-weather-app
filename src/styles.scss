@@ -8,6 +8,7 @@
   --transparent-background: rgba(255, 255, 255, 0.1);
   --text-secondary: royalblue;
   --accent: purple;
+  --shadow-color: rgba(0, 0, 0, 0.2);
 }
 
 :root[data-theme='dark'] {
@@ -18,6 +19,7 @@
   --transparent-background: rgba(0, 0, 0, 0.1);
   --text-secondary: grey;
   --accent: darkred;
+  --shadow-color: rgba(255, 255, 255, 0.2);
 }
 
 
@@ -54,7 +56,7 @@ button, input {
 }
 
 hr {
-  border-bottom: 1px solid var(--text-primary);
+  border-bottom: 1.5px solid var(--text-primary);
   width: 100%;
 }
 
