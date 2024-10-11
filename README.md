@@ -23,7 +23,7 @@ Développer une application météo permettant à l'utilisateur de rechercher la
 Pour installer et lancer l'application, suivez les étapes ci-dessous :
 
 ```bash
-git clone https://github.com/antoineando/angular-weather.git
+git clone https://github.com/AntoineAndo/angular-weather-app.git
 cd angular-weather
 npm install
 npm run start

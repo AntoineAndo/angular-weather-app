@@ -102,7 +102,7 @@ export class WeatherService {
     if (location.error) {
       this.apiSubject.next({
         data: null,
-        error: 'Location not defined',
+        error: 'User location not available',
       });
     }
 
