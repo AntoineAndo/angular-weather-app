@@ -1,9 +1,8 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-// import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/Header/Header.component';
 import { WeatherComponent } from './components/Weather/Weather.component';
 import { WeatherService } from './services/weather.service';
-import { catchError, filter, Subscription, throwError } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -22,24 +21,22 @@ export class AppComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   error: string = '';
 
-  constructor(
-    private weatherService: WeatherService,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {
     this.weatherSubscription = this.weatherService.weather$
       .pipe(filter((data) => data !== null))
       .subscribe({
         next: (data) => {
-          console.log('done');
-          console.log(data);
+          if (data.error) {
+            this.weatherData = null;
+            this.error = data.error;
+            this.isLoading = false;
+            return;
+          }
           this.isLoading = false;
           this.weatherData = data;
-        },
-        error: (error) => {
-          this.error = error;
-          this.isLoading = false;
+          this.error = '';
         },
       });
   }

@@ -50,9 +50,6 @@ export class PlacesService {
         },
       })
       .pipe(
-        tap((data) => {
-          console.log('data', data);
-        }),
         catchError((error) => {
           console.error('Error fetching places data:', error);
           return of(null);

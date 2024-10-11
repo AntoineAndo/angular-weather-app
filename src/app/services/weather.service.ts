@@ -4,11 +4,9 @@ import {
   BehaviorSubject,
   catchError,
   filter,
-  finalize,
   Observable,
   of,
   switchMap,
-  tap,
   throwError,
 } from 'rxjs';
 
@@ -28,6 +26,9 @@ export class WeatherService {
   private weatherSubject = new BehaviorSubject<any>(null);
   public weather$ = this.weatherSubject.asObservable();
 
+  private apiSubject = new BehaviorSubject<any>(null);
+  public api$ = this.apiSubject.asObservable();
+
   constructor(private http: HttpClient) {
     // Get the location from local storage or get the user location
     const localLocation = this.getLocationFromLocalStorage();
@@ -39,21 +40,34 @@ export class WeatherService {
 
     this.location$
       .pipe(
-        filter((location) => location !== null),
-        switchMap((location) => this.fetchWeather(location)),
+        filter((location) => {
+          return location !== null;
+        })
+      )
+      .subscribe({
+        next: (location) => {
+          this.fetchWeather(location);
+        },
+      });
+
+    this.api$
+      .pipe(
+        filter((d) => {
+          return d !== null;
+        }),
         catchError((error) => {
-          return throwError(() => error);
+          return of(error);
         })
       )
       .subscribe({
         next: (data) => {
-          console.log(data);
+          if (!data.error) {
+            this.saveLocationToLocalStorage(data.location);
+            this.saveLocationToRecentLocations(data.location);
+          }
           this.weatherSubject.next(data);
-          this.saveLocationToLocalStorage(data.location);
-          this.saveLocationToRecentLocations(data.location);
         },
         error: (error) => {
-          console.log('here');
           this.weatherSubject.error(error);
         },
       });
@@ -80,13 +94,16 @@ export class WeatherService {
     );
   }
 
-  fetchWeather(location: any): Observable<any> {
+  fetchWeather(location: any): void {
     if (!this.API_KEY || !this.API_ENDPOINT) {
-      return throwError(() => new Error('API key or endpoint not defined'));
+      throwError(() => new Error('API key or endpoint not defined'));
     }
 
     if (location.error) {
-      return throwError(() => 'Location not defined');
+      this.apiSubject.next({
+        data: null,
+        error: 'Location not defined',
+      });
     }
 
     // Definition of the parameters for the API call
@@ -105,13 +122,24 @@ export class WeatherService {
     url.search = new URLSearchParams(params).toString();
 
     // Call the API
-    return this.http.get<any>(url.toString()).pipe(
-      catchError((error) => {
-        console.error('Error fetching weather data:', error);
-        return throwError(() => 'Location not found');
-      }),
-      finalize(() => {})
-    );
+    const https$ = this.http.get<any>(url.toString());
+    https$
+      .pipe(
+        catchError((res) => {
+          return of({
+            data: null,
+            error: res.error.error.message,
+          });
+        })
+      )
+      .subscribe({
+        next: (data) => {
+          this.apiSubject.next(data);
+        },
+        error: (error) => {
+          this.apiSubject.next(error);
+        },
+      });
   }
 
   saveLocationToLocalStorage(location: any): void {
