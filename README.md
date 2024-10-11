@@ -18,6 +18,11 @@ Développer une application météo permettant à l'utilisateur de rechercher la
 - Gestion du thème light/dark
 - Responsive pour desktop, tablette et mobile
 
+## Erreurs connues
+
+- Les icônes qui représentent les conditions météo sont pixélisées sur les grands affichages.
+  La raison est que ces icônes sont fournis directement par l'API de météo et comme ce sont des PNG, ils ne scalent pas correctement.
+
 ## Installation
 
 Pour installer et lancer l'application, suivez les étapes ci-dessous :
