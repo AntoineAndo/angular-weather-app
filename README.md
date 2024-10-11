@@ -1,27 +1,34 @@
-# AngularWeather
+# Angular Weather App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.10.
+## Sujet de projet
 
-## Development server
+Développement d'une application météo avec Angular
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Objectif
 
-## Code scaffolding
+Développer une application météo permettant à l'utilisateur de rechercher la météo actuelle et les prévisions pour une ville ou un pays de son choix, avec une interface moderne et responsive.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Fonctionnalités
 
-## Build
+- Possibilité de chercher le nom d'une ville ou d'un pays.
+- Le formulaire propose suggestions automatiques en fonction de la saisie.
+- Gestion des erreurs (ville/pays non valide ou non trouvé).
+- Affichage de la température actuelle, des conditions météorologiques (ensoleillé, nuageux, etc.), de l'humidité et du vent.
+- Prévision météo pour les 5 prochains jours avec un résumé pour chaque jour.
+- Gestion du thème light/dark
+- Responsive pour desktop, tablette et mobile
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Running unit tests
+Pour installer et lancer l'application, suivez les étapes ci-dessous :
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+git clone https://github.com/antoineando/angular-weather.git
+cd angular-weather
+npm install
+npm run start
+```
 
-## Running end-to-end tests
+## Utilisation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Ouvrez votre navigateur et accédez à `http://localhost:4200/` pour utiliser l'application.
