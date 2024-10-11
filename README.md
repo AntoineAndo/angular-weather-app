@@ -34,6 +34,8 @@ npm install
 npm run start
 ```
 
+**Note:** Assurez-vous d'avoir ajouté le fichier `environment.ts` fourni par mail qui contient les variables d'environnement indispensables au fonctionnement de l'application
+
 ## Utilisation
 
 Ouvrez votre navigateur et accédez à `http://localhost:4200/` pour utiliser l'application.
