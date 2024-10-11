@@ -21,7 +21,7 @@ Développer une application météo permettant à l'utilisateur de rechercher la
 ## Erreurs connues
 
 - Les icônes qui représentent les conditions météo sont pixélisées sur les grands affichages.
-  La raison est que ces icônes sont fournis directement par l'API de météo et comme ce sont des PNG, ils ne scalent pas correctement.
+  La raison est que ces icônes sont fournies directement par l'API de météo et comme ce sont des PNG, ils ne scalent pas correctement.
 
 ## Installation
 
