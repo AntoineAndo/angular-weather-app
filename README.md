@@ -29,7 +29,7 @@ Pour installer et lancer l'application, suivez les étapes ci-dessous :
 
 ```bash
 git clone https://github.com/AntoineAndo/angular-weather-app.git
-cd angular-weather
+cd angular-weather-app
 npm install
 npm run start
 ```
